@@ -1,0 +1,1 @@
+c:\users\maduras\documents\visual studio 2013\Projects\CPPImpl\CPPImpl\CPPImpl_IntegrationTests\obj\Debug\CPPImpl_IntegrationTests.csprojResolveAssemblyReference.cache
