@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>ClangSharp</id>
+    <version>3.6.0</version>
+    <title>ClangSharp</title>
+    <authors>mjsabby</authors>
+    <owners>mjsabby</owners>
+    <licenseUrl>https://github.com/mjsabby/ClangSharp/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://www.clangsharp.org/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Libclang bindings for .NET written in C#</description>
+    <releaseNotes>Updated to Clang 3.6.0</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+    <tags>clang llvm libclang clangsharp llvmsharp ast c++ c roslyn compilers parsers clang.net llvm.net bindings pinvoke</tags>
+  </metadata>
+</package>
