@@ -11,6 +11,8 @@ using Microsoft.VisualStudio.Shell;
 using EnvDTE;
 using System.IO;
 using mx.GenImpl;
+using System.Windows.Forms;
+using EnvDTE80;
 
 namespace mx.CPPImpl
 {
@@ -77,7 +79,23 @@ namespace mx.CPPImpl
             }
         }
         #endregion
+        private void ShowStandardIncludeDirectories(EnvDTE.Project project)
+        {
+            Microsoft.VisualStudio.VCProjectEngine.VCProject proj;
+            Microsoft.VisualStudio.VCProjectEngine.VCPlatform platform;
+            Microsoft.VisualStudio.VCProjectEngine.IVCCollection configurationsCollection;
 
+            proj = (Microsoft.VisualStudio.VCProjectEngine.VCProject)project.Object;
+
+            configurationsCollection = (Microsoft.VisualStudio.VCProjectEngine.IVCCollection)proj.Configurations;
+
+            foreach (Microsoft.VisualStudio.VCProjectEngine.VCConfiguration configuration in configurationsCollection)
+            {
+                platform = (Microsoft.VisualStudio.VCProjectEngine.VCPlatform)configuration.Platform;
+
+                MessageBox.Show(configuration.Name + ": " + platform.IncludeDirectories);
+            }
+        }
         private int msgBox(string text, OLEMSGICON icon, OLEMSGBUTTON buttons)
         {
             int result;
@@ -137,9 +155,10 @@ namespace mx.CPPImpl
         /// </summary>
         private void MenuItemCallback(object sender, EventArgs e)
         {
-
+            
             EnvDTE.DTE dte = (EnvDTE.DTE)GetService(typeof(SDTE));
             TextSelection objSel = (TextSelection)dte.ActiveDocument.Selection;
+
             string file = dte.ActiveDocument.FullName;
             if (file.ToLower().EndsWith(".h") ||
                 file.ToLower().EndsWith(".hpp") ||

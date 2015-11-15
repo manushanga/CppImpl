@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ClangSharp;
 using System.IO;
+using System.Windows.Forms;
 
 namespace mx.GenImpl
 {
@@ -23,6 +24,17 @@ namespace mx.GenImpl
             m_sparams.Add(tup);
 
             return CXChildVisitResult.CXChildVisit_Continue;
+        }
+        public static string[] getIncludes()
+        {
+            string[] includes = {};
+            //MessageBox.Show(System.IO.Directory.GetCurrentDirectory());
+            string file = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/.CppImpl/includes.txt";
+            if (System.IO.File.Exists(file))
+            {
+                includes = System.IO.File.ReadAllLines(file);
+            }
+            return includes;
         }
         public static CXChildVisitResult cursorVisitor(CXCursor cursor, CXCursor parent, IntPtr client_data)
         {
@@ -79,7 +91,7 @@ namespace mx.GenImpl
                     }
                     if (m_sparams.Count > 0)
                     {
-                        for (int i = 1; i < m_sparams.Count - 1; i++)
+                        for (int i = 0; i < m_sparams.Count - 1; i++)
                         {
                             methodSig += m_sparams[i].Item1 + " " + m_sparams[i].Item2 + ", ";
                         }
@@ -98,10 +110,15 @@ namespace mx.GenImpl
             CXUnsavedFile unsavedfile;
             m_file = headerFilename;
             m_outcpp = "#include <" + Path.GetFileName(m_file) + "> \n\n";
-            string[] cargs = { "-x", "c++", "-std=c++11", "-isystem", Path.GetDirectoryName(m_file).ToString() };
+            List<string> cargs = new List<string>{ "-x", "c++", "-std=c++11", "-isystem", Path.GetDirectoryName(m_file).ToString() };
 
+            foreach (string a in getIncludes())
+            {
+                cargs.Add("-isystem");
+                cargs.Add(a);
+            }
             var TU = clang.parseTranslationUnit(index, m_file,
-                cargs, cargs.Length, out unsavedfile, 0, (uint)CXTranslationUnit_Flags.CXTranslationUnit_None);
+                cargs.ToArray(), cargs.Count, out unsavedfile, 0, (uint)CXTranslationUnit_Flags.CXTranslationUnit_None);
 
             m_getSelected = false;
 
@@ -120,10 +137,16 @@ namespace mx.GenImpl
             CXUnsavedFile unsavedfile;
             m_file = headerFilename;
             m_outcpp = "";
-            string[] cargs = { "-x", "c++", "-std=c++11", "-isystem", Path.GetDirectoryName(m_file).ToString() };
+            List<string> cargs = new List<string> { "-x", "c++", "-std=c++11", "-isystem", Path.GetDirectoryName(m_file).ToString() };
+
+            foreach (string a in getIncludes())
+            {
+                cargs.Add("-isystem");
+                cargs.Add(a);
+            }
 
             var TU = clang.parseTranslationUnit(index, m_file,
-                cargs, cargs.Length, out unsavedfile, 0, (uint)CXTranslationUnit_Flags.CXTranslationUnit_None);
+                cargs.ToArray(), cargs.Count(), out unsavedfile, 0, (uint)CXTranslationUnit_Flags.CXTranslationUnit_None);
 
             var file = clang.getFile(TU, m_file);
 

@@ -2,7 +2,7 @@ C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura 
 C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\\ClangSharp.dll
 C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\\CPPImpl.pkgdef
 C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\\extension.vsixmanifest
-C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\x64\\libclang.dll
-C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\\libclang.dll
-C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\\CPPImpl.pdb
 C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\\gpl-2.0.txt
+C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\\libclang.dll
+C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\x64\\libclang.dll
+C:\Users\maduras\AppData\Local\Microsoft\VisualStudio\12.0Exp\Extensions\Madura A\CPPImpl\1.0\\CPPImpl.pdb
